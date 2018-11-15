@@ -140,8 +140,6 @@ module.exports = {
 
 
 
-## 5、试运行
-
 > 此时，执行`npm start` 或 `webpack filename` ， 就会一个`dist`文件夹，包括一个`html`文件和`build.js`文件。
 >
 > 放到本地服务器上，试试，正常使用！
@@ -150,9 +148,46 @@ module.exports = {
 
 
 
+>
+>
+> GIT TAG  : **tag_v1.0_基础版webpack配置**
+>
+>
 
 
 
+## 5、本地服务器
+
+安装`webpack-dev-server`插件
+
+```javascript
+cnpm i webpack-dev-server -D
+```
+
+修改`package.json`文件
+
+```javascript
+"scripts": {
+    "start": "webpack-dev-server --open",
+    "build": "webpack --display-modules --profile --progress --colors --display-error-details"
+  },
+```
+
+`webpack.config.js`新增配置
+
+```javascript
+devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    port: 9001,
+    compress: true,// 服务器压缩
+    open: true,// 自动打开浏览器
+    // hot:true//热更新
+}
+```
+
+
+
+> 此时，执行`npm start`命令，会自动打开一个浏览器窗口，端口为`9001`，渲染`dist`文件夹的里面的文件
 
 
 
