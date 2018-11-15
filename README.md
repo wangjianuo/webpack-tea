@@ -109,17 +109,44 @@ drwxr-xr-x 1 Administrator 197121    0 11月 15 10:58 src/
 
 
 
-## 3、配置`webpack.config.js`文件
-
-
-
-## 4、配置开发服务器
+## 3、配置生成HTML的插件
 
 ```javascript
-cnpm i webpack-dev-server –D
+cnpm i html-webpack-plugin –D
 ```
 
 
+
+## 4、配置`webpack.config.js`文件
+
+```javascript
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+    entry: './src/index.js',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'build.js'
+    },
+    module: {},
+    plugins: [
+        new HtmlWebpackPlugin({ template: './public/index.html' })
+    ],
+    mode: 'development',
+    resolve: {}
+}
+```
+
+
+
+## 5、试运行
+
+> 此时，执行`npm start` 或 `webpack filename` ， 就会一个`dist`文件夹，包括一个`html`文件和`build.js`文件。
+>
+> 放到本地服务器上，试试，正常使用！
+
+> 到此，一个简版的webpack配置，已经OK了。先提一版。继续...
 
 
 
