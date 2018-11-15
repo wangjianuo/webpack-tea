@@ -191,6 +191,81 @@ devServer: {
 
 
 
+>
+>
+>GIT TAG  : **tag_v2.0_新增本地服务器**
+>
+>
+
+
+
+# 四、各种Loader
+
+> 通过使用不同的Loader，Webpack可以要把不同的文件都转成JS文件,比如CSS、ES6/7、JSX等
+> - **test**：匹配处理文件的扩展名的正则表达式-
+> - **use**：loader名称，就是你要使用模块的名称
+> - **include/exclude**：手动指定必须处理的文件夹或屏蔽不需要处理的文件夹
+> - **query**：为loaders提供额外的设置选项
+
+
+
+## 1、`css-loader`
+
+> 安装
+
+```javascript
+cnpm i style-loader css-loader -D
+```
+
+>  配置`webpack.config.js`
+
+```javascript
+ module: {
+     rules: [
+         {
+             test: /\.css$/,
+             use: ['style-loader', 'css-loader'],
+             include: path.join(__dirname, './src'),
+             exclude: /node_modules/
+         }
+     ]
+ },
+```
+
+> 创建文件src/css/base.css
+
+```javascript
+html {
+    background: #ccc;
+}
+```
+
+> 在`index.js` 中`import`一下`base.css`文件
+
+```javascript
+import base from './css/base.css'
+```
+
+
+
+> 此时，执行下`npm start`, 浏览器窗口背景色是`#ccc`了。
+>
+> 查看下网页的元素，可以看到生成了`style`标签。
+
+```html
+<style type="text/css">html {
+    background: #ccc;
+}</style>
+```
+
+> 总结：
+>
+> 1、先通过`css-loader`处理`css`后；
+>
+> 2、然后，通过`style-loader`生成`<style></style>`标签；
+
+
+
 
 
 

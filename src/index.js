@@ -1,1 +1,1 @@
-alert(666)
+import base from './css/base.css'

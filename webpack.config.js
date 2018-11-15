@@ -7,7 +7,16 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'build.js'
     },
-    module: {},
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+                include: path.join(__dirname, './src'),
+                exclude: /node_modules/
+            }
+        ]
+    },
     plugins: [
         new HtmlWebpackPlugin({ template: './public/index.html' })
     ],
@@ -16,9 +25,8 @@ module.exports = {
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
         port: 9001,
-        compress: true,// 服务器压缩
-        open: true,// 自动打开浏览器
-        // hot:true//热更新
+        compress: true,
+        open: true
     }
 }
 
