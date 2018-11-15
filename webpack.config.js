@@ -14,6 +14,12 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
                 include: path.join(__dirname, './src'),
                 exclude: /node_modules/
+            },
+            {
+                test: /\.(jpg|png|gif|svg)$/,
+                use: 'url-loader',
+                include: path.join(__dirname, './src'),
+                exclude: /node_modules/
             }
         ]
     },

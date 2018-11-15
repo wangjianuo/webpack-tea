@@ -266,6 +266,67 @@ import base from './css/base.css'
 
 
 
+>
+>
+> GIT TAG：**tag_v3.0_兼容cssloader**
+>
+>
+
+
+
+## 2、图片
+
+安装
+
+```javascript
+cnpm i file-loader url-loader -D
+```
+
+> `file-loader` 解决CSS等文件中的引入图片路径问题
+> `url-loader `当图片较小的时候会把图片BASE64编码，大于limit参数的时候还是使用file-loader 进行拷贝
+
+
+
+增加配置
+
+```javascript
+{
+	test: /\.(jpg|png|gif|svg)$/,
+	use: 'url-loader',
+	include: path.join(__dirname, './src'),
+	exclude: /node_modules/
+}
+```
+
+
+
+添加图片1:
+
+```javascript
+let logo = require('./images/logo.png');
+let img = new Image();
+img.src = logo;
+document.body.appendChild(img);
+```
+
+
+
+添加图片2：
+
+```css
+.imgLoader {
+    width: 100px;
+    height: 100px;
+    background: url(../images/bg.png);
+}
+```
+
+
+
+> 执行`npm start` ， 图片显示正常。
+
+
+
 
 
 
