@@ -1,0 +1,27 @@
+{
+  "name": "webpack-tea",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --profile --progress --colors --display-error-details",
+    "dev": "webpack --display-modules --profile --progress --colors --display-error-details",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangjianuo/webpack-tea.git"
+  },
+  "author": "wangjianuo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangjianuo/webpack-tea/issues"
+  },
+  "homepage": "https://github.com/wangjianuo/webpack-tea#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
