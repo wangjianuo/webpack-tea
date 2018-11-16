@@ -1,6 +1,6 @@
-import base from './css/base.css'
-import home from './css/home.less'
-import addr from './css/addr.scss'
+import base from './css/base'
+import home from './css/home'
+import addr from './css/addr'
 
 let logo = require('./images/logo.png');
 let img = new Image();

@@ -730,6 +730,29 @@ new cleanWebpaclPlugin(path.join(__dirname, 'dist'))
 
 
 
+## 12、resolve解析
+
+### ① extensions
+
+> 指定extension之后可以不用在require或是import的时候加文件扩展名,会依次尝试添加扩展名进行匹配
+
+配置
+
+```javascript
+ resolve: {
+     //自动补全后缀，注意第一个必须是空字符串,后缀一定以点开头
+     extensions: [" ", ".js", ".css", ".less", ".scss", ".json"],
+ },
+```
+
+引用的时候，可以这样：
+
+```javascript
+import base from './css/base'
+import home from './css/home'
+import addr from './css/addr'
+```
+
 
 
 
