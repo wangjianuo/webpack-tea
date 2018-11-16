@@ -16,7 +16,17 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ExtractTextWebpackPlugin.extract({
-                    use: 'css-loader'
+                    use: 'css-loader',
+                    fallback: 'style-loader'
+                }),
+                include: path.join(__dirname, './src'),
+                exclude: /node_modules/
+            },
+            {
+                test: /\.less$/,
+                use: ExtractTextWebpackPlugin.extract({
+                    use: ['css-loader', 'less-loader'],
+                    fallback: 'style-loader'
                 }),
                 include: path.join(__dirname, './src'),
                 exclude: /node_modules/
@@ -44,6 +54,7 @@ module.exports = {
     resolve: {},
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
+        host: 'localhost',
         port: 9001,
         compress: true,
         open: true

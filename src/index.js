@@ -1,4 +1,5 @@
 import base from './css/base.css'
+import home from './css/home.less'
 
 
 let logo = require('./images/logo.png');

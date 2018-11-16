@@ -393,6 +393,59 @@ plugins: [
 
 
 
+## 5、编译less
+
+安装
+
+```javascript
+cnpm i less less-loader -D
+```
+
+添加`less`文件
+
+> 创建`src/css/home.less`文件，在`index.js`引用`home.less`
+
+```javascript
+import home from './css/home.less'
+```
+
+添加`less`配置
+
+```javascript
+module: {
+    rules: [
+        {
+            test: /\.css$/,
+            use: ExtractTextWebpackPlugin.extract({
+                use: 'css-loader',
+                fallback: 'style-loader'
+            }),
+            include: path.join(__dirname, './src'),
+            exclude: /node_modules/
+        },
+        {
+            test: /\.less$/,
+            use: ExtractTextWebpackPlugin.extract({
+                use: ['css-loader', 'less-loader'],
+                fallback: 'style-loader'
+            }),
+            include: path.join(__dirname, './src'),
+            exclude: /node_modules/
+        },
+        {
+            test: /\.(jpg|png|gif|svg)$/,
+            use: 'url-loader',
+            include: path.join(__dirname, './src'),
+            exclude: /node_modules/
+        }
+    ]
+}
+```
+
+> 执行`npm run build` ，查看`dist`文件夹文件。 生效了。
+
+
+
 
 
 
