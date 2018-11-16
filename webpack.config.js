@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const cleanWebpaclPlugin = require('clean-webpack-plugin');
 const PUBLIC_PATH = '/';
 
 
@@ -71,9 +72,10 @@ module.exports = {
         }),
         new ExtractTextWebpackPlugin('css/index.css'),
         new CopyWebpackPlugin([{
-            from: path.join(__dirname, 'template'),//静态资源目录源地址
+            from: path.join(__dirname, 'template'), //静态资源目录源地址
             to: path.resolve(__dirname, 'dist') //目标地址，相对于output的path目录
         }]),
+        new cleanWebpaclPlugin(path.join(__dirname, 'dist'))
     ],
     mode: 'development',
     resolve: {},

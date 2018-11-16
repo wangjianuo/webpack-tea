@@ -695,6 +695,41 @@ devtool:'eval-source-map'
 cnpm i copy-webpack-plugin -D
 ```
 
+配置文件
+
+```javascript
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+```
+
+```javascript
+new CopyWebpackPlugin([{
+    from: path.join(__dirname, 'template'), //静态资源目录源地址
+    to: path.resolve(__dirname, 'dist') //目标地址，相对于output的path目录
+}]),
+```
+
+
+
+## 11、打包前先清空输出目录
+
+安装
+
+```javascript
+cnpm i  clean-webpack-plugin -D
+```
+
+配置文件
+
+```javascript
+const cleanWebpaclPlugin = require('clean-webpack-plugin');
+```
+
+```javascript
+new cleanWebpaclPlugin(path.join(__dirname, 'dist'))
+```
+
+
+
 
 
 
