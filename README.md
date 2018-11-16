@@ -446,6 +446,70 @@ module: {
 
 
 
+## 6、编译sass
+
+安装
+
+```javascript
+cnpm i node-sass sass-loader -D
+```
+
+
+
+添加`sass`文件
+
+> 创建`src/css/addr.scss`文件，在`index.js`引用`addr.scss`
+
+```javascript
+import addr from './css/addr.scss'
+```
+
+添加`sass`配置
+
+```javascript
+module: {
+    rules: [
+        {
+            test: /\.css$/,
+            use: ExtractTextWebpackPlugin.extract({
+                use: 'css-loader',
+                fallback: 'style-loader'
+            }),
+            include: path.join(__dirname, './src'),
+            exclude: /node_modules/
+        },
+        {
+            test: /\.less$/,
+            use: ExtractTextWebpackPlugin.extract({
+                use: ['css-loader', 'less-loader'],
+                fallback: 'style-loader'
+            }),
+            include: path.join(__dirname, './src'),
+            exclude: /node_modules/
+        },
+        {
+            test: /\.scss$/,
+            use: ExtractTextWebpackPlugin.extract({
+                use: ['css-loader', 'sass-loader'],
+                fallback: 'style-loader'
+            }),
+            include: path.join(__dirname, './src'),
+            exclude: /node_modules/
+        },
+        {
+            test: /\.(jpg|png|gif|svg)$/,
+            use: 'url-loader',
+            include: path.join(__dirname, './src'),
+            exclude: /node_modules/
+        }
+    ]
+}
+```
+
+> 执行`npm run build` ，查看`dist`文件夹文件。 生效了。
+
+
+
 
 
 
