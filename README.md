@@ -510,6 +510,81 @@ module: {
 
 
 
+## 7、CSS3属性前缀
+
+安装
+
+```javascript
+cnpm i postcss-loader autoprefixer -D
+```
+
+修改`webpack.config.js`
+
+```javascript
+{
+    test: /\.css$/,
+    use: ExtractTextWebpackPlugin.extract({
+        use: ['css-loader', 'postcss-loader'],
+        fallback: 'style-loader'
+    }),
+    include: path.join(__dirname, './src'),
+    exclude: /node_modules/
+}
+```
+
+修改css
+
+```css
+.circle {
+    transform: translateX(100px);
+}
+```
+
+
+
+> 执行`npm run build`，发现控制台报错了，错误信息，如下：
+
+```javascript
+ERROR in ./src/css/base.css
+Module build failed (from ./node_modules/_css-loader@1.0.1@css-loader/index.js):
+ModuleBuildError: Module build failed (from ./node_modules/_postcss-loader@3.0.0@postcss-loader/src/index.js):
+Error: No PostCSS Config found in: E:\Github\webpack-tea\src\css
+    at config.load.then (E:\Github\webpack-tea\node_modules\_postcss-load-config@2.0.0@postcss-load-config\src\index.js:55:15)
+    at runLoaders (E:\Github\webpack-tea\node_modules\_webpack@4.25.1@webpack\lib\NormalModule.js:286:20)
+    at E:\Github\webpack-tea\node_modules\_loader-runner@2.3.1@loader-runner\lib\LoaderRunner.js:364:11
+    at E:\Github\webpack-tea\node_modules\_loader-runner@2.3.1@loader-runner\lib\LoaderRunner.js:230:18
+    at context.callback (E:\Github\webpack-tea\node_modules\_loader-runner@2.3.1@loader-runner\lib\LoaderRunner.js:111:13)
+    at Promise.resolve.then.then.catch (E:\Github\webpack-tea\node_modules\_postcss-loader@3.0.0@postcss-loader\src\index.js:208:9)
+ @ ./src/css/base.css
+
+```
+
+> 大概意思说，没有找到PostCSS的配置文件。
+
+在项目的根目录下，创建`postcss.config.js`文件。
+
+```javascript
+module.exports = {
+    plugins: {
+        'autoprefixer': { browsers: 'last 5 version' }
+    }
+}
+```
+
+> 再次执行，`npm run build`命令，发现可以了。
+
+> 看下`dist/css/index.css`，解析成CSS3带前缀的了。如下：
+
+```css
+.circle {
+    -webkit-transform: translateX(100px);
+        -ms-transform: translateX(100px);
+            transform: translateX(100px);
+}
+```
+
+
+
 
 
 

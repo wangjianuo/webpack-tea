@@ -16,7 +16,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ExtractTextWebpackPlugin.extract({
-                    use: 'css-loader',
+                    use: ['css-loader', 'postcss-loader'],
                     fallback: 'style-loader'
                 }),
                 include: path.join(__dirname, './src'),
