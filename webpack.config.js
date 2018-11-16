@@ -78,7 +78,8 @@ module.exports = {
         port: 9001,
         compress: true,
         open: true
-    }
+    },
+    devtool:'eval-source-map'
 }
 
 
