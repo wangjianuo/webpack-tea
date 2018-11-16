@@ -347,6 +347,52 @@ document.body.appendChild(img);
 
 
 
+## 4、分离CSS
+
+> 因为CSS的下载和JS可以并行,当一个HTML文件很大的时候，我们可以把CSS单独提取出来加载。
+
+安装
+
+```javascript
+cnpm i extract-text-webpack-plugin@next -D
+```
+
+修改`webpack.config.js`文件
+
+```javascript
+module: {
+    rules: [
+        {
+            test: /\.css$/,
+            use: ExtractTextWebpackPlugin.extract({
+                use: 'css-loader'
+            }),
+            include: path.join(__dirname, './src'),
+            exclude: /node_modules/
+        },
+        {
+            test: /\.(jpg|png|gif|svg)$/,
+            use: 'url-loader',
+            include: path.join(__dirname, './src'),
+            exclude: /node_modules/
+        }
+    ]
+},
+plugins: [
+    new HtmlWebpackPlugin({
+        minify: {
+            removeAttributeQuotes: true
+        },
+        hash: true,
+        template: './public/index.html',
+        filename: 'index.html'
+    }),
+    new ExtractTextWebpackPlugin('css/index.css')
+],
+```
+
+
+
 
 
 
