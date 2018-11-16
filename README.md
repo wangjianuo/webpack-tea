@@ -111,6 +111,8 @@ drwxr-xr-x 1 Administrator 197121    0 11月 15 10:58 src/
 
 ## 3、配置生成HTML的插件
 
+> 功能：自动能产出HTML文件，并在里面引入产出后的资源
+
 ```javascript
 cnpm i html-webpack-plugin –D
 ```
@@ -324,6 +326,26 @@ document.body.appendChild(img);
 
 
 > 执行`npm start` ， 图片显示正常。
+
+
+
+## 3、优化`html-webpack-plugin`
+
+> - `minify` 是对html文件进行压缩，`removeAttrubuteQuotes`是去掉属性的双引号
+> - `hash` 引入产出资源的时候加上哈希避免缓存
+> - `template` 模版路径
+
+> 执行`npm run build`命令，然后看到`dist/index.html`，有这样的变化：
+>
+> 有`hash`效果，没有双引号了. 
+
+```html
+<body>
+    <script type=text/javascript src=build.js?a245fc13f407f8fb666e></script>
+</body>
+```
+
+
 
 
 

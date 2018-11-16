@@ -24,7 +24,14 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: './public/index.html' })
+        new HtmlWebpackPlugin({
+            minify: {
+                removeAttributeQuotes: true
+            },
+            hash: true,
+            template: './public/index.html',
+            filename: 'index.html'
+        })
     ],
     mode: 'development',
     resolve: {},
