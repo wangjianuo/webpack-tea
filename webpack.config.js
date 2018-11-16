@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const PUBLIC_PATH = '/';
 
 
@@ -68,7 +69,11 @@ module.exports = {
             template: './public/index.html',
             filename: 'index.html'
         }),
-        new ExtractTextWebpackPlugin('css/index.css')
+        new ExtractTextWebpackPlugin('css/index.css'),
+        new CopyWebpackPlugin([{
+            from: path.join(__dirname, 'template'),//静态资源目录源地址
+            to: path.resolve(__dirname, 'dist') //目标地址，相对于output的path目录
+        }]),
     ],
     mode: 'development',
     resolve: {},
@@ -79,7 +84,7 @@ module.exports = {
         compress: true,
         open: true
     },
-    devtool:'eval-source-map'
+    devtool: 'eval-source-map'
 }
 
 

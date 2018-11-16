@@ -685,6 +685,18 @@ devtool:'eval-source-map'
 
 
 
+## 10、拷贝静态文件
+
+> 有时项目中没有引用的文件也需要打包到目标目录
+
+安装
+
+```javascript
+cnpm i copy-webpack-plugin -D
+```
+
+
+
 
 
 # 参考
