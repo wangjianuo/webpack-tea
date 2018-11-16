@@ -585,6 +585,89 @@ module.exports = {
 
 
 
+## 8、 转义ES6/ES7/JSX
+
+> Babel是一个编译JavaScript的平台，可以把ES6/ES7,React的JSX转义为ES5
+
+安装
+
+```javascript
+cnpm i babel-core babel-loader babel-preset-env babel-preset-stage-0 babel-preset-react -D
+```
+
+配置`webpack.config.js`文件
+
+```javascript
+{
+    test:/\.jsx?$/,
+    use: {
+        loader: 'babel-loader',
+        options: {
+            presets: ["env","stage-0","react"]
+        }
+    },
+    include:path.join(__dirname,'./src'),
+    exclude:/node_modules/
+}
+```
+
+
+
+执行`npm start build `, 报错
+
+```javascript
+ERROR in ./src/index.js
+Module build failed (from ./node_modules/_babel-loader@8.0.4@babel-loader/lib/index.js):
+Error: Cannot find module '@babel/core'
+ babel-loader@8 requires Babel 7.x (the package '@babel/core'). If you'd like to use Babel 6.x ('babel-core'), you should install 'babel-loader@7'.
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:581:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:507:25)
+    at Module.require (internal/modules/cjs/loader.js:637:17)
+    at require (E:\Github\webpack-tea\node_modules\_v8-compile-cache@2.0.2@v8-compile-cache\v8-compile-cache.js:159:20)
+    at Object.<anonymous> (E:\Github\webpack-tea\node_modules\_babel-loader@8.0.4@babel-loader\lib\index.js:10:11)
+    at Module._compile (E:\Github\webpack-tea\node_modules\_v8-compile-cache@2.0.2@v8-compile-cache\v8-compile-cache.js:178:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)
+    at Module.load (internal/modules/cjs/loader.js:599:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:538:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:530:3)
+    at Module.require (internal/modules/cjs/loader.js:637:17)
+    at require (E:\Github\webpack-tea\node_modules\_v8-compile-cache@2.0.2@v8-compile-cache\v8-compile-cache.js:159:20)
+    at loadLoader (E:\Github\webpack-tea\node_modules\_loader-runner@2.3.1@loader-runner\lib\loadLoader.js:13:17)
+    at iteratePitchingLoaders (E:\Github\webpack-tea\node_modules\_loader-runner@2.3.1@loader-runner\lib\LoaderRunner.js:169:2)
+```
+
+> 看错误信息是Babel版本的问题，参考：https://www.npmjs.com/package/babel-loader
+
+
+
+解决方案：
+
+> webpack 4.x | babel-loader 8.x | babel 7.x
+
+```javascript
+cnpm install -D babel-loader @babel/core @babel/preset-env webpack
+```
+
+> webpack 4.x | babel-loader 7.x | babel 6.x
+
+```javascript
+cnpm install -D babel-loader@7 babel-core babel-preset-env webpack
+```
+
+
+
+> 我尝试把`balel-blader`降到7.x，试试。
+>
+> 先把`package.json`中的` "babel-loader": "^8.0.4",`干掉，再执行下面的命令：
+
+```
+cnpm i babel-loader@7 --save-dev
+```
+
+> 再次执行 `build`，编译成功。
+
+
+
 
 
 

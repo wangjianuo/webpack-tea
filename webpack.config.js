@@ -45,6 +45,17 @@ module.exports = {
                 use: 'url-loader',
                 include: path.join(__dirname, './src'),
                 exclude: /node_modules/
+            },
+            {
+                test: /\.jsx?$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ["env", "stage-0", "react"]
+                    }
+                },
+                include: path.join(__dirname, './src'),
+                exclude: /node_modules/
             }
         ]
     },
